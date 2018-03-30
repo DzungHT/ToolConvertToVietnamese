@@ -1,0 +1,5 @@
+C:\Users\dzung\source\repos\ToolConvertToVietnamese\CommonUtils\bin\Debug\CommonUtils.dll
+C:\Users\dzung\source\repos\ToolConvertToVietnamese\CommonUtils\bin\Debug\CommonUtils.pdb
+C:\Users\dzung\source\repos\ToolConvertToVietnamese\CommonUtils\obj\Debug\CommonUtils.csproj.CoreCompileInputs.cache
+C:\Users\dzung\source\repos\ToolConvertToVietnamese\CommonUtils\obj\Debug\CommonUtils.dll
+C:\Users\dzung\source\repos\ToolConvertToVietnamese\CommonUtils\obj\Debug\CommonUtils.pdb

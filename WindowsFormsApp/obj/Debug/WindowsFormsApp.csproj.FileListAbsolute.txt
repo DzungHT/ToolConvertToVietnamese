@@ -1,0 +1,13 @@
+C:\Users\dzung\source\repos\ToolConvertToVietnamese\WindowsFormsApp\bin\Debug\WindowsFormsApp.exe.config
+C:\Users\dzung\source\repos\ToolConvertToVietnamese\WindowsFormsApp\bin\Debug\WindowsFormsApp.exe
+C:\Users\dzung\source\repos\ToolConvertToVietnamese\WindowsFormsApp\bin\Debug\WindowsFormsApp.pdb
+C:\Users\dzung\source\repos\ToolConvertToVietnamese\WindowsFormsApp\bin\Debug\CommonUtils.dll
+C:\Users\dzung\source\repos\ToolConvertToVietnamese\WindowsFormsApp\bin\Debug\CommonUtils.pdb
+C:\Users\dzung\source\repos\ToolConvertToVietnamese\WindowsFormsApp\obj\Debug\WindowsFormsApp.csprojResolveAssemblyReference.cache
+C:\Users\dzung\source\repos\ToolConvertToVietnamese\WindowsFormsApp\obj\Debug\WindowsFormsApp.Form1.resources
+C:\Users\dzung\source\repos\ToolConvertToVietnamese\WindowsFormsApp\obj\Debug\WindowsFormsApp.Properties.Resources.resources
+C:\Users\dzung\source\repos\ToolConvertToVietnamese\WindowsFormsApp\obj\Debug\WindowsFormsApp.csproj.GenerateResource.cache
+C:\Users\dzung\source\repos\ToolConvertToVietnamese\WindowsFormsApp\obj\Debug\WindowsFormsApp.csproj.CoreCompileInputs.cache
+C:\Users\dzung\source\repos\ToolConvertToVietnamese\WindowsFormsApp\obj\Debug\WindowsFormsApp.csproj.CopyComplete
+C:\Users\dzung\source\repos\ToolConvertToVietnamese\WindowsFormsApp\obj\Debug\WindowsFormsApp.exe
+C:\Users\dzung\source\repos\ToolConvertToVietnamese\WindowsFormsApp\obj\Debug\WindowsFormsApp.pdb
