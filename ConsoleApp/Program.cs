@@ -22,11 +22,25 @@ namespace ConsoleApp
                 	<bean:message key = ""robrIndex.reportUnit "" />
                 </ strong >
             </ div >                       ";
+
+            Regex regex = new Regex(@"[.,?\/~!@#$%^&*()\[\]{}:;""']");
+
+            var x1 = "\" phút\"";
+            var x2 = "\" ngày\"";
+            var x3 = "\" giờ, \"";
+
+            var x4 = "Giá trị cột \"Cấp ủy viên phụ trách BVAN\" chỉ có thể là X";
+
+            var z = x4.Replace(@"\""", "\"");
+
+            var y = x3.RemoveSpecialCharacter();
+
             Console.WriteLine("'{0}'", s.GenerateKey("key"));
             Console.WriteLine("'{0}'", s.ConvertToUnsignVietnamese().RemoveSpace());
             Console.WriteLine("'{0}'", s.RemoveTagHTML().RemoveSpace().ConvertToUnsignVietnamese());
             Console.WriteLine("'{0}'", s1.RemoveSpace().RemoveTagHTML());
-
+            Console.WriteLine("'{0}'", y);
+            Console.WriteLine("'{0}'", z);
 
             Console.ReadKey();
         }

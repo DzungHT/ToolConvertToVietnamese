@@ -3,3 +3,8 @@ C:\Users\dzung\source\repos\ToolConvertToVietnamese\CommonUtils\bin\Debug\Common
 C:\Users\dzung\source\repos\ToolConvertToVietnamese\CommonUtils\obj\Debug\CommonUtils.csproj.CoreCompileInputs.cache
 C:\Users\dzung\source\repos\ToolConvertToVietnamese\CommonUtils\obj\Debug\CommonUtils.dll
 C:\Users\dzung\source\repos\ToolConvertToVietnamese\CommonUtils\obj\Debug\CommonUtils.pdb
+E:\ToolConvertToVietnamese\CommonUtils\bin\Debug\CommonUtils.dll
+E:\ToolConvertToVietnamese\CommonUtils\bin\Debug\CommonUtils.pdb
+E:\ToolConvertToVietnamese\CommonUtils\obj\Debug\CommonUtils.csproj.CoreCompileInputs.cache
+E:\ToolConvertToVietnamese\CommonUtils\obj\Debug\CommonUtils.dll
+E:\ToolConvertToVietnamese\CommonUtils\obj\Debug\CommonUtils.pdb

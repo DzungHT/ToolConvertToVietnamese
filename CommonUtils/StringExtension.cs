@@ -33,6 +33,11 @@ namespace CommonUtils
             return result;
         }
 
+        public static string RemoveSpecialCharacter(this string text)
+        {
+            return Regex.Replace(text, @"[`~!@#$%^&*/<>?,\(\)_\+\-\=\{\}\[\]\\\|\;\'\:\""\.]", "");
+        }
+
         public static string ConvertToUnsignVietnamese(this string text)
         {
             string result = text;
@@ -70,28 +75,34 @@ namespace CommonUtils
             return result;
         }
 
-        public static string GenerateKeyName(this string text, string prefix)
+        public static string GenerateKey(this string text, string prefix, int keyIndex = 0)
         {
             string result = "";
 
-            text = text.ConvertToUnsignVietnamese().RemoveSpace().RemoveTagHTML();
-            text = text.First().ToString().ToLower() + text.Substring(1)?? "";
+            text = text.ConvertToUnsignVietnamese()
+                        .RemoveSpace()
+                        .RemoveTagHTML()
+                        .RemoveSpecialCharacter()
+                        .ToLowerFirstCharacter();
 
-            result = prefix + "." + text;
+            result = prefix + "." + text + (keyIndex > 0 ? keyIndex.ToString() : string.Empty);
             return result;
         }
 
-        public static string GenerateKey(this string text, string prefix)
+        public static string GenerateResource(this string text, string prefix, int keyIndex = 0)
         {
             string result = "";
             string key = text;
-            key = key.Trim(' ', '"').ConvertToUnsignVietnamese().RemoveSpace().RemoveTagHTML();
-            key = key.First().ToString().ToLower() + key.Substring(1) ?? "";
-            key = prefix + "." + key;
+            key = key.GenerateKey(prefix, keyIndex);
 
-            result = key.Trim() + " = " + text.Trim(' ', '"');
+            result = key.Trim() + " = " + text.Trim(' ', '"').Replace(@"\""", "\"");
 
             return result;
+        }
+
+        public static string ToLowerFirstCharacter(this string text)
+        {
+            return text.First().ToString().ToLower() + text.Substring(1) ?? "";
         }
     }
 }
