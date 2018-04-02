@@ -22,13 +22,14 @@ namespace WindowsFormsApp
         {
             InitializeComponent();
             label5.Text = string.Empty;
+            txtRegex.Text = @"(""([^""]*[àáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ][^""]*)((\\""){1}([^""]*)((\\""){1}))([^""]*[àáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ][^""]*)"")|(""([^""])*((\\""){1})([^""])*[àáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]+([^""])*((\\""){1})([^""])*"")|(""([^""])*[àáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]([^""])*"")";
         }
 
         private List<SearchResult> SearchVietnamese(FileInfo fileInfo, ProgressBar progressBar)
         {
             List<SearchResult> result = new List<SearchResult>();
 
-            string regexVietnameseStr = @"(""([^""])*((\\""){1})([^""])*[àáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]+([^""])*((\\""){1})([^""])*"")|(""([^""])*[àáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]([^""])*"")";
+            string regexVietnameseStr = txtRegex.Text;
             Regex regex = new Regex(regexVietnameseStr, RegexOptions.IgnoreCase);
             var lines = File.ReadAllLines(fileInfo.FullName);
             progressBar.Maximum = lines.Length;
@@ -41,23 +42,24 @@ namespace WindowsFormsApp
 
                 foreach (Match item in matches)
                 {
-                    if (result.Any(x => item.Value.Equals(x.Text)))
+                    //if (result.Any(x => item.Value.Equals(x.Text)))
+                    //{
+                    //    continue;
+                    //}
+                    //else
+                    //{
+                    int keyIndex = 0;
+                    if (result.Any(x => item.Value.GenerateKey(moduleName).Equals(x.Key)))
                     {
-                        continue;
+                        keyIndex = i;
                     }
-                    else
-                    {
-                        int keyIndex = 0;
-                        if (result.Any(x => item.Value.GenerateKey(moduleName).Equals(x.Key)))
-                        {
-                            keyIndex = i;
-                        }
-                        result.Add(new SearchResult(i + 1, item, fileInfo, keyIndex));
-                    }
+                    result.Add(new SearchResult(i + 1, item, fileInfo, keyIndex));
+                    //}
 
                 }
                 progressBar.PerformStep();
             }
+
             return result;
         }
 
@@ -88,6 +90,7 @@ namespace WindowsFormsApp
             string filePath = listBoxFiles.SelectedValue.ToString();
 
             _lst = new List<SearchResult>();
+            SearchResult.x = 1;
             _lst = SearchVietnamese(new FileInfo(filePath), progressBar);
             gridResult.DataSource = _lst;
 
@@ -99,7 +102,7 @@ namespace WindowsFormsApp
         {
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
             folderBrowserDialog.RootFolder = Environment.SpecialFolder.MyComputer;
-            folderBrowserDialog.SelectedPath = @"D:\d2t.software\vhr_mytel-#088\offical-117e612182622fec466d23c7031d2e0cb656c591\src\java\com\viettel";
+            folderBrowserDialog.SelectedPath = @"D:\vhr_mytel\src\java\com\viettel";
             var result = folderBrowserDialog.ShowDialog();
             if (result == DialogResult.OK)
             {
@@ -117,6 +120,7 @@ namespace WindowsFormsApp
             var files = SearchAllFiles(folderPath.Text);
             progressBar1.Maximum = files.Count;
             _lst = new List<SearchResult>();
+            SearchResult.x = 1;
             foreach (var item in files)
             {
                 _lst.AddRange(SearchVietnamese(new FileInfo(item.FullName), progressBar));
@@ -130,20 +134,81 @@ namespace WindowsFormsApp
 
         private void gridResult_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex > -1)
-            {
-                int id = (int)gridResult.Rows[e.RowIndex].Cells[0].Value;
-                var seachResult = _lst.First(x => x.Id == id);
-                Clipboard.SetText(seachResult.ReplacementString);
-                Process.Start("code", seachResult.GetCmdOpenVisualCode());
-            }
+            //if (e.RowIndex > -1 && e.ColumnIndex > -1)
+            //{
+            //    int id = (int)gridResult.Rows[e.RowIndex].Cells[0].Value;
+            //    var seachResult = _lst.First(x => x.Id == id);
+            //    Clipboard.Clear();
+            //    Clipboard.SetText(seachResult.ReplacementString);
+            //    Process.Start("code", seachResult.GetCmdOpenVisualCode());
+            //}
         }
 
         private void gridResult_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex > -1 && e.ColumnIndex > -1)
+            try
             {
-                Clipboard.SetText(gridResult.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
+                if (e.RowIndex > -1 && e.ColumnIndex > -1)
+                {
+                    int id = (int)gridResult.Rows[e.RowIndex].Cells[0].Value;
+                    var seachResult = _lst.First(x => x.Id == id);
+                    Clipboard.Clear();
+                    Clipboard.SetDataObject(seachResult.ReplacementString, false, 5, 200);
+                    Process.Start("code", seachResult.GetCmdOpenVisualCode());
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private void gridResult_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            try
+            {
+                if (e.Button == MouseButtons.Right)
+                {
+                    if (e.RowIndex > -1 && e.ColumnIndex > -1)
+                    {
+                        int id = (int)gridResult.Rows[e.RowIndex].Cells[0].Value;
+                        var seachResult = _lst.First(x => x.Id == id);
+
+                        File.AppendAllText(@"F:\Desktop\Untitled-2.txt", seachResult.Resource + Environment.NewLine);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private void listBoxFiles_Click(object sender, EventArgs e)
+        {
+            string filePath = listBoxFiles.SelectedValue.ToString();
+
+            _lst = new List<SearchResult>();
+            SearchResult.x = 1;
+            _lst = SearchVietnamese(new FileInfo(filePath), progressBar);
+            gridResult.DataSource = _lst;
+
+            label5.Text = _lst.Count.ToString();
+            progressBar.Value = 0;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string regex = @"(""([^""])*((\\""){ 1})([^""])*[àáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]+([^""])*((\\""){1})([^""])*"")|(""([^""])*[àáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]([^""])*"")";
+                Clipboard.Clear();
+                Clipboard.SetDataObject(regex, false, 5, 200);
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }

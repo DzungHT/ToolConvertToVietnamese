@@ -1,0 +1,10 @@
+C:\Users\dzung\source\repos\ToolConvertToVietnamese\ConsoleApp\bin\Release\ConsoleApp.exe.config
+C:\Users\dzung\source\repos\ToolConvertToVietnamese\ConsoleApp\bin\Release\ConsoleApp.exe
+C:\Users\dzung\source\repos\ToolConvertToVietnamese\ConsoleApp\bin\Release\ConsoleApp.pdb
+C:\Users\dzung\source\repos\ToolConvertToVietnamese\ConsoleApp\bin\Release\CommonUtils.dll
+C:\Users\dzung\source\repos\ToolConvertToVietnamese\ConsoleApp\bin\Release\CommonUtils.pdb
+C:\Users\dzung\source\repos\ToolConvertToVietnamese\ConsoleApp\obj\Release\ConsoleApp.csprojResolveAssemblyReference.cache
+C:\Users\dzung\source\repos\ToolConvertToVietnamese\ConsoleApp\obj\Release\ConsoleApp.csproj.CoreCompileInputs.cache
+C:\Users\dzung\source\repos\ToolConvertToVietnamese\ConsoleApp\obj\Release\ConsoleApp.csproj.CopyComplete
+C:\Users\dzung\source\repos\ToolConvertToVietnamese\ConsoleApp\obj\Release\ConsoleApp.exe
+C:\Users\dzung\source\repos\ToolConvertToVietnamese\ConsoleApp\obj\Release\ConsoleApp.pdb

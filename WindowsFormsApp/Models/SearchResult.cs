@@ -11,7 +11,7 @@ namespace WindowsFormsApp.Models
 {
     public class SearchResult
     {
-        private static int x = 1;
+        public static int x = 1;
         private string _moduleName;
         private Match _match;
         private FileInfo _fileInfo;
@@ -34,7 +34,7 @@ namespace WindowsFormsApp.Models
         }
         public string FileName
         {
-            get => FileInfo.FullName;
+            get => FileInfo.Name;
         }
         public string Resource
         {
@@ -80,7 +80,15 @@ namespace WindowsFormsApp.Models
         {
             string format = "-g {0}:{1}:{2}";
 
-            return string.Format(format, FileInfo.FullName, Line, _match.Index);
+            return string.Format(format, FileInfo.FullName, Line, _match.Index + 1);
+        }
+    }
+
+    public class SearchResultSortByKey : IComparer<SearchResult>
+    {
+        public int Compare(SearchResult x, SearchResult y)
+        {
+            return x.Key.CompareTo(y.Key);
         }
     }
 }
